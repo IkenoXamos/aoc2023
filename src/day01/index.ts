@@ -1,11 +1,16 @@
 import run from "aocrunner";
 
-const parseInput = (rawInput: string) => rawInput;
+const parseInput = (rawInput: string) => rawInput.split('\n');
+
+const firstDigit = /^\D*(\d)/;
+const lastDigit = /(\d)(?!.*\d)/;
 
 const part1 = (rawInput: string) => {
   const input = parseInput(rawInput);
 
-  return;
+  const values = input.map(line => +`${firstDigit.exec(line)?.at(-1)}${lastDigit.exec(line)?.at(-1)}`);
+
+  return values.reduce((a, b) => a + b, 0);
 };
 
 const part2 = (rawInput: string) => {
